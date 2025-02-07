@@ -1,4 +1,4 @@
-name: Build workshop
+name: basic statistics workshop
 
 on:
   repository_dispatch:
