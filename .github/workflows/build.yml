@@ -1,4 +1,4 @@
-name: basic statistics workshop
+name: build
 
 on:
   repository_dispatch:
