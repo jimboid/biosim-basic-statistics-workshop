@@ -11,11 +11,14 @@ LABEL org.opencontainers.image.licenses=MIT
 USER $NB_USER
 WORKDIR $HOME
 
+RUN conda install mamba
 # Install workshop deps
-RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-      conda config --env --set subdir osx-arm64; \
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+      mamba install mdtraj matplotlib numpy -y; \
+    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+      mamba install conda-forge/osx-arm64::mdtraj conda-forge/osx-arm64::matplotlib conda-forge/osx-arm64::numpy -y \
     fi
-RUN conda install mdtraj matplotlib numpy -y
+#RUN conda install mdtraj matplotlib numpy -y
 RUN conda install ipywidgets -c conda-forge -y
 
 # Get workshop files and move them to jovyan directory.
