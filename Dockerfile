@@ -12,6 +12,9 @@ USER $NB_USER
 WORKDIR $HOME
 
 # Install workshop deps
+RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+      conda config --env --set subdir osx-arm64; \
+    fi
 RUN conda install mdtraj matplotlib numpy -y
 RUN conda install ipywidgets -c conda-forge -y
 
