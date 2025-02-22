@@ -14,9 +14,9 @@ WORKDIR $HOME
 RUN conda install mamba
 # Install workshop deps
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-      mamba install mdtraj matplotlib numpy -y; \
+      mamba install mdtraj matplotlib numpy; \
     elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-      mamba install conda-forge/osx-arm64::mdtraj conda-forge/osx-arm64::matplotlib conda-forge/osx-arm64::numpy -y \
+      mamba install conda-forge/osx-arm64::mdtraj conda-forge/osx-arm64::matplotlib conda-forge/osx-arm64::numpy; \
     fi
 #RUN conda install mdtraj matplotlib numpy -y
 RUN conda install ipywidgets -c conda-forge -y
