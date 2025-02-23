@@ -11,15 +11,8 @@ LABEL org.opencontainers.image.licenses=MIT
 USER $NB_USER
 WORKDIR $HOME
 
-RUN conda install mamba
 # Install workshop deps
-RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-      mamba install mdtraj matplotlib numpy; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-      mamba install conda-forge/osx-arm64::mdtraj conda-forge/osx-arm64::matplotlib conda-forge/osx-arm64::numpy; \
-    fi
-#RUN conda install mdtraj matplotlib numpy -y
-RUN conda install ipywidgets -c conda-forge -y
+RUN conda install matplotlib numpy ipywidgets -y
 
 # Get workshop files and move them to jovyan directory.
 RUN git clone https://github.com/CCPBioSim/basic-statistics-workshop.git && \
